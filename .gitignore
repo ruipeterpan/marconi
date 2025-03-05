@@ -1,0 +1,16 @@
+__pycache__
+/datasets/*.csv
+/datasets/*.pickle
+/datasets/*.json
+/datasets/*.jsonl
+/datasets/*.txt
+/datasets/swebench_20240820_honeycomb
+/tmp
+/traces
+/logs*
+/results/*.pickle
+/results/*/*.pickle
+/results/*/*/*.pickle
+/sweep/*.txt
+/figures
+*.tar.gz
