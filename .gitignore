@@ -14,3 +14,4 @@ __pycache__
 /sweep/*.txt
 /figures
 *.tar.gz
+.DS_Store
