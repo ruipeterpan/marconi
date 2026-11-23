@@ -523,7 +523,7 @@ class RadixCache:
                     # savings are relative to the parent
                     flops_savings_mamba = self.num_ssm_layers * get_mamba1_flops(seqlen_child, self.d, self.n)
                     flops_savings_attn = self.num_attn_layers * (get_attn_flops(seqlen_total, self.d) - get_attn_flops(seqlen_parent, self.d))
-                    flops_savings_mlp = self.num_mlp_layers * (get_mlp_flops(seqlen_total, self.d) - get_attn_flops(seqlen_parent, self.d))
+                    flops_savings_mlp = self.num_mlp_layers * (get_mlp_flops(seqlen_total, self.d) - get_mlp_flops(seqlen_parent, self.d))
                     total_flops_savings = flops_savings_mamba + flops_savings_attn + flops_savings_mlp
                     total_memory = self.num_ssm_layers * get_mamba_state_size(self.d, self.n) + self.num_attn_layers * get_kvs_size(seqlen_total, self.d)
                 else:
@@ -552,7 +552,7 @@ class RadixCache:
             
             assert len(node_to_evict.children) in [0, 1]
             if len(node_to_evict.children) == 0:
-                bytes_evicted += self.num_ssm_layers * get_mamba_state_size(self.d, self.n) + self.num_attn_layers * get_kvs_size(len(node.value), self.d)
+                bytes_evicted += self.num_ssm_layers * get_mamba_state_size(self.d, self.n) + self.num_attn_layers * get_kvs_size(len(node_to_evict.value), self.d)
                 self._delete_leaf(node_to_evict)
             else:
                 bytes_evicted += self.num_ssm_layers * get_mamba_state_size(self.d, self.n)
